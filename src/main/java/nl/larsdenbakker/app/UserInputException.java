@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * An exception to indicate that something has gone wrong and the user can
+ * reasonably be expected to understand the error and/or be able to do
+ * something about it. This should be thrown to indicate that the user
+ * has to fix configuration files, give different command line input,
+ * configure external programs differently etc. This should NOT be thrown
+ * to indicate any internal hardcoded errors.
  *
  * @author Lars den Bakker <larsdenbakker at gmail.com>
  */

@@ -11,6 +11,7 @@ import nl.larsdenbakker.util.ClassUtils;
 import nl.larsdenbakker.util.CollectionUtils;
 
 /**
+ * Helper implementation of Application.
  *
  * @author Lars den Bakker <larsdenbakker at gmail.com>
  */
@@ -37,6 +38,12 @@ public abstract class AbstractApplication implements Application {
       _load();
    }
 
+   /**
+    * Subclass implementation of load(). Override this instead of load().
+    *
+    * @throws UserInputException if something went wrong during loading. Check the UserInputException
+    *                            documentation to see when this should be thrown in implementations.
+    */
    protected void _load() throws UserInputException {
 
    }
@@ -87,6 +94,15 @@ public abstract class AbstractApplication implements Application {
    }
 
    @Override
+   public void unloadModule(Class<? extends Module> type) {
+      if (isLoaded(type)) {
+         Module module = getModule(type);
+         module.unload();
+         modules.remove(type);
+      }
+   }
+
+   @Override
    public <T extends Module> T getModule(Class<T> type) {
       T t = (T) modules.get(type); //safe cast garaunteed
       if (t == null) {
@@ -108,6 +124,9 @@ public abstract class AbstractApplication implements Application {
       _unload();
    }
 
+   /**
+    * Subclass implementation of unload(). Override this instead of unload().
+    */
    protected void _unload() {
    }
 
@@ -128,6 +147,11 @@ public abstract class AbstractApplication implements Application {
       return (canShutDown) ? true : canShutdownModules();
    }
 
+   /**
+    * Subclass implementation of canShutdown(). Override this instead of canShutdown().
+    *
+    * @return whether or not this application can shut down.
+    */
    protected boolean _canShutdown() {
       return true;
    }
@@ -149,6 +173,9 @@ public abstract class AbstractApplication implements Application {
       shutdownModules();
    }
 
+   /**
+    * Subclass implementation of shutdown(). Override this instead of shutdown().
+    */
    protected void _shutdown() {
    }
 
@@ -164,6 +191,12 @@ public abstract class AbstractApplication implements Application {
       saveModules();
    }
 
+   /**
+    * Subclass implementation of saveToDisk(). Override this instead of saveToDisk().
+    *
+    * @throws UserInputException if something went wrong during saving. Check the UserInputException
+    *                            documentation to see when this should be thrown in implementations.
+    */
    protected void _saveToDisk() throws UserInputException {
    }
 
@@ -171,16 +204,6 @@ public abstract class AbstractApplication implements Application {
       for (Module mod : getLoadedModules()) {
          mod.saveToDisk();
       }
-   }
-
-   @Override
-   public File getFolder() {
-      return new File("application" + File.separator);
-   }
-
-   @Override
-   public File getModulesFolder() {
-      return new File(getFolder() + File.separator + "modules");
    }
 
 }

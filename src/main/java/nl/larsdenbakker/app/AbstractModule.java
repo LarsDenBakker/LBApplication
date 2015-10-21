@@ -1,6 +1,7 @@
 package nl.larsdenbakker.app;
 
 /**
+ * Helper implementation of Module.
  *
  * @author Lars den Bakker<larsdenbakker@gmail.com>
  */
@@ -36,6 +37,12 @@ public abstract class AbstractModule implements Module {
       }
    }
 
+   /**
+    * Subclass implementation of load(). Override this instead of load().
+    *
+    * @throws UserInputException if something went wrong during loading. Check the UserInputException
+    *                            documentation to see when this should be thrown in implementations.
+    */
    protected void _load() throws UserInputException {
    }
 
@@ -46,6 +53,9 @@ public abstract class AbstractModule implements Module {
       }
    }
 
+   /**
+    * Subclass implementation of unload().
+    */
    protected void _unload() {
    }
 
@@ -56,6 +66,12 @@ public abstract class AbstractModule implements Module {
       }
    }
 
+   /**
+    * Subclass implementation of saveToDisk(). Override this instead of saveToDisk().
+    *
+    * @throws UserInputException if something went wrong during saving. Check the UserInputException
+    *                            documentation to see when this should be thrown in implementations.
+    */
    protected void _saveToDisk() throws UserInputException {
    }
 
@@ -66,6 +82,9 @@ public abstract class AbstractModule implements Module {
       }
    }
 
+   /**
+    * Subclass implementation of shutdown(). Override this instead of shutdown().
+    */
    protected void _shutdown() {
    }
 
