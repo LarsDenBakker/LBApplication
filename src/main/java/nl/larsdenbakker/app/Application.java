@@ -5,8 +5,9 @@ import java.util.Collection;
 import java.util.Map;
 
 /**
- * Applications are objects that can be loaded, unloaded, shut down and saved safely. It is built
- * out of Modules that loaded and unloaded safely.
+ * Applications are modular objects that can be loaded, unloaded, saved and shut down safely.
+ * An Application can load and unload modules on the fly, keeping the application lightweight
+ * by loading only what is necessary.
  *
  * @author Lars den Bakker<larsdenbakker@gmail.com>
  */

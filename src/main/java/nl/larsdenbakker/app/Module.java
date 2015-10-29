@@ -3,9 +3,10 @@ package nl.larsdenbakker.app;
 import java.io.File;
 
 /**
- * A module contained in an Application. Can be loaded, unloaded, saved and shut down safely.
- * Dependencies that must be loaded before this Module can be loaded can be declared. A Module
- * can respond to unloading of other Modules.
+ * Modules are objects that can be attached to an application.
+ * Just like applications, they can be loaded, unloaded, saved and shut down safely.
+ * Modules can also declare other modules as dependencies which must be loaded before
+ * the Module itself is loaded. A Module can also respond to unloading of other Modules.
  *
  * @author Lars den Bakker<larsdenbakker@gmail.com>
  */
